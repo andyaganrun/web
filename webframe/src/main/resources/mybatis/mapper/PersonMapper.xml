@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.andy.jay.mapper.PersonMapper">
+
+    <select id="getPersons" resultType="PersonEntity">
+        SELECT
+        p.id id, p.name name
+        FROM person p
+        WHERE 1=1
+        <if test="personId!=null and personId!='-1'">
+            AND p.id=#{personId}
+        </if>
+    </select>
+
+
+</mapper>

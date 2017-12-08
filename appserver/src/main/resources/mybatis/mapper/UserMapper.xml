@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fr.appserver.mapper.UserMapper">
+
+    <select id="getAll" resultType="User">
+        SELECT u.id, u.account, u.name
+        FROM sys_user u
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Long" resultType="User">
+        SELECT u.id, u.account, u.name
+        FROM sys_user u
+        WHERE u.id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="User">
+        INSERT INTO sys_user (account,name) VALUES (#{account}, #{name})
+    </insert>
+
+    <update id="update" parameterType="User">
+        UPDATE sys_user
+        <set>
+            <if test="account != null">account = #{account},</if>
+            <if test="name != null">name = #{name}</if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM sys_user WHERE id =#{id}
+    </delete>
+
+</mapper>
